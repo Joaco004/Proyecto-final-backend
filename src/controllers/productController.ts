@@ -10,6 +10,7 @@ class ProductController {
   static getAllProducts = async (req: Request, res: Response): Promise<void | Response> => {
     try {
       const { name, stock, category, minPrice, maxPrice } = req.query
+      console.log(req.query)
 
       const filter: any = {}
 

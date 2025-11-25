@@ -8,6 +8,7 @@ import limiter from "./middleware/rateLimitMiddleware"
 import morgan from "morgan"
 import IUserTokenPayload from "./interfaces/IUserTokenPayload"
 import dotenv from "dotenv"
+import authMiddleware from "./middleware/authMiddleware"
 dotenv.config()
 
 declare global {
@@ -31,7 +32,8 @@ app.get("/", (__: Request, res: Response) => {
   res.json({ status: true })
 })
 
-app.use("/auth", limiter, authRouter)
+app.use("/auth", authRouter)
+// http://localhost:3000/products?
 app.use("/products", productRouter)
 
 // endpoint para el 404 - no se encuentra el recurso
