@@ -3,7 +3,7 @@ import path from "node:path"
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "uploads/")
+    cb(null, "uploads")
   },
   filename: (req, file, cb) => {
     const name = Date.now() + "-" + crypto.randomUUID()
@@ -12,9 +12,10 @@ const storage = multer.diskStorage({
 })
 
 const fileFilter = (req: Express.Request, file: Express.Multer.File, cb: multer.FileFilterCallback) => {
-  if (file.mimetype.startsWith("/image")) {
+  if (file.mimetype.startsWith("image/")) {
     cb(null, true)
   } else {
+    console.log(file.mimetype)
     cb(new Error("Solo se permiten imagenes"))
   }
 }

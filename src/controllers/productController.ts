@@ -56,7 +56,7 @@ class ProductController {
 
   static addProduct = async (req: Request, res: Response): Promise<void | Response> => {
     try {
-      const { body } = req
+      const { body, file } = req
 
       const { name, description, price, category, stock } = body
 
@@ -69,7 +69,16 @@ class ProductController {
       // 1 - si para la validación creo el producto
       // 2 - si no pasa la validación retorno una respuesta 400 al front
 
-      const validator = createProductSchema.safeParse(body)
+      const dataToValidate = {
+        name,
+        description,
+        category,
+        stock: +stock,
+        price: +price,
+        image: file?.path
+      }
+
+      const validator = createProductSchema.safeParse(dataToValidate)
 
       if (!validator.success) {
         return res.status(400).json({ success: false, error: validator.error.flatten().fieldErrors });
@@ -78,7 +87,7 @@ class ProductController {
       const newProduct = new Product(validator.data)
 
       await newProduct.save()
-      res.status(201).json({ succes: true, data: newProduct })
+      res.status(201).json({ success: true, data: newProduct })
     } catch (e) {
       const error = e as Error
       res.status(500).json({ success: false, error: error.message })
