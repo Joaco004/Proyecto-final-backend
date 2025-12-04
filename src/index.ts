@@ -9,6 +9,7 @@ import IUserTokenPayload from "./interfaces/IUserTokenPayload"
 import dotenv from "dotenv"
 import logger from "./config/logger"
 import path from "node:path"
+import fs from "node:fs"
 import emailService from "./services/emailService"
 
 dotenv.config()
@@ -28,7 +29,11 @@ app.use(cors())
 app.use(express.json())
 app.use(logger)
 
-app.use("/uploads", express.static(path.join(__dirname, "../uploads")))
+const uploadsPath = path.join(__dirname, "../uploads")
+
+if (!fs.existsSync(uploadsPath)) {
+  fs.mkdirSync(uploadsPath, { recursive: true })
+}
 
 app.use(morgan("dev"))
 
