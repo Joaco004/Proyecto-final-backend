@@ -1,5 +1,7 @@
 import { authSchema } from "../validators/authValidator"
 import { Request, Response } from "express"
+import transporter from "../config/emailConfig"
+import createTemplate from "../templates/emailTemplate"
 import bcrypt from "bcryptjs"
 import User from "../model/UserModel"
 import jwt from "jsonwebtoken"
@@ -20,10 +22,10 @@ class AuthController {
           return res.status(400).json({
               success: false,
               error: validation.error.flatten().fieldErrors
-          });
+          })
       }
 
-      const { email, password } = validation.data;
+      const { email, password } = validation.data
       
 
       const user = await User.findOne({ email })
@@ -37,6 +39,17 @@ class AuthController {
       const newUser = new User({ email, password: hash })
 
       await newUser.save()
+        try {
+            await transporter.sendMail({
+                from: `Tienda <${process.env.EMAIL_USER}>`,
+                to: email,
+                subject: "¡Bienvenido/a!",
+                html: createTemplate(email, "Te damos la bienvenida a nuestra plataforma.")
+            })
+        } catch (error) {
+            console.log("Error enviando email:", error)
+        }
+
       res.status(201).json({ success: true, data: newUser })
     } catch (e) {
       const error = e as Error
@@ -55,10 +68,10 @@ class AuthController {
           return res.status(400).json({
               success: false,
               error: validation.error.flatten().fieldErrors
-          });
+          })
       }
 
-      const { email, password } = validation.data;
+      const { email, password } = validation.data
       
 
       const user = await User.findOne({ email })
