@@ -1,3 +1,4 @@
+import { authSchema } from "../validators/authValidator"
 import { Request, Response } from "express"
 import bcrypt from "bcryptjs"
 import User from "../model/UserModel"
@@ -13,11 +14,17 @@ class AuthController {
   // body: {"email": "gabi@gmail.com", "password": pepe123}
   static register = async (req: Request, res: Response): Promise<void | Response> => {
     try {
-      const { email, password } = req.body
+      const validation = authSchema.safeParse(req.body);
 
-      if (!email || !password) {
-        return res.status(400).json({ success: false, error: "Datos invalidos" })
+      if (!validation.success) {
+          return res.status(400).json({
+              success: false,
+              error: validation.error.flatten().fieldErrors
+          });
       }
+
+      const { email, password } = validation.data;
+      
 
       const user = await User.findOne({ email })
 
@@ -42,11 +49,17 @@ class AuthController {
 
   static login = async (req: Request, res: Response): Promise<void | Response> => {
     try {
-      const { email, password } = req.body
+      const validation = authSchema.safeParse(req.body);
 
-      if (!email || !password) {
-        return res.status(400).json({ success: false, error: "Datos invalidos" })
+      if (!validation.success) {
+          return res.status(400).json({
+              success: false,
+              error: validation.error.flatten().fieldErrors
+          });
       }
+
+      const { email, password } = validation.data;
+      
 
       const user = await User.findOne({ email })
 
