@@ -1,0 +1,4 @@
+::1 POST /auth/register 201 163 - 1125.491 ms
+::1 POST /auth/register 201 163 - 637.993 ms
+::1 POST /auth/register 201 164 - 922.161 ms
+::1 POST /auth/register 201 163 - 1554.056 ms

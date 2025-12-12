@@ -13,6 +13,8 @@ import fs from "node:fs"
 import emailService from "./services/emailService"
 
 dotenv.config()
+console.log("Usuario:", process.env.EMAIL_USER) 
+console.log("Pass:", process.env.EMAIL_PASS ? "Tiene contraseña" : "NO TIENE contraseña")
 
 declare global {
   namespace Express {
