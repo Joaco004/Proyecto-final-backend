@@ -1,0 +1,7 @@
+::1 POST /auth/register 201 158 - 1541.848 ms
+::1 POST /auth/login 200 232 - 64.282 ms
+::1 POST /auth/register 201 157 - 934.589 ms
+::1 POST /auth/login 200 231 - 62.795 ms
+::1 POST /products 201 270 - 14.327 ms
+::1 POST /auth/register 409 69 - 2.089 ms
+::1 POST /auth/register 201 161 - 929.372 ms

@@ -1,0 +1,28 @@
+meta {
+  name: Crear Producto
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:3000/products
+  body: multipartForm
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5M2IxOTAzMDZlZWQzZTkwNzQ5MjFhZiIsImVtYWlsIjoicGVwZUBnbWFpbC5jb20iLCJpYXQiOjE3NjU0ODA3NzgsImV4cCI6MTc2NTQ4NDM3OH0.tUlLgC53uJ4plLgfDYlWOD8wudbRa7Vt2is69Abj2bo
+}
+
+body:multipart-form {
+  name: Notebook Gamer
+  price: 1500
+  stock: 10
+  category: tecnologia
+  description: computadora de alto rendimiento para videojuegos
+  image: @file(C:\Users\Joaco\Documents\JayPee-img\pc gamer.jpeg)
+}
+
+settings {
+  encodeUrl: true
+}
