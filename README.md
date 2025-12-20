@@ -16,11 +16,4 @@ URL Base: `https://proyecto-final-backend-x8fm.onrender.com`
 - Seguridad: JWT, Bcrypt, Rate Limiting, Helmet, Cors.
 - Utils: Multer (Imágenes), Nodemailer (Emails), Morgan (Logs).
 
----
 
-## ⚙️ Instalación y Ejecución Local
-
-1. **Clonar el repositorio:**
-   ```bash
-   git clone [https://github.com/Joaco004/Proyecto-final-backend.git](https://github.com/Joaco004/Proyecto-final-backend.git)
-   cd Proyecto-final-backend

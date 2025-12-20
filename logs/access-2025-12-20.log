@@ -1,0 +1,12 @@
+::1 GET /products? 304 - - 1027.425 ms
+::1 GET /products? 304 - - 2.597 ms
+::1 GET /No%20contiene%20imagen 404 54 - 0.467 ms
+::1 GET /products? 304 - - 3.333 ms
+::1 GET /products? 304 - - 3.114 ms
+::1 GET /No%20contiene%20imagen 404 54 - 0.353 ms
+::1 POST /auth/register 400 90 - 4.622 ms
+::1 POST /auth/register 409 69 - 2.713 ms
+::1 POST /auth/register 201 157 - 3139.757 ms
+::1 POST /auth/login 400 90 - 0.691 ms
+::1 POST /auth/login 401 41 - 63.868 ms
+::1 POST /auth/login 429 75 - 0.414 ms
