@@ -1,4 +1,4 @@
-// LEVANTAR NUESTRO SERIVICIO Y CONFIGURACIONES GLOBALES
+
 import express, { Request, Response } from "express"
 import cors from "cors"
 import connectDB from "./config/mongodb"
